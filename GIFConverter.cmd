@@ -16,6 +16,7 @@ REM /* location of ffmpeg.exe */
 SET ffmpeg=%~dp0ffmpeg.exe
 
 REM /* start and end time of original video source */
+REM SET timeRange=-ss 00:00:00 -t 30
 SET timeRange=-ss 0 -t 30
 
 REM /* set fps and scale */
