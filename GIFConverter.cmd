@@ -11,9 +11,10 @@ ECHO.
 SET input=%~1
 SET palette=%~dpn1.png
 SET output=%~dpn1.gif
+SET PATH=%~dp0
 
-REM /* location of ffmpeg.exe */
-SET ffmpeg=%~dp0ffmpeg.exe
+REM /* ffmpeg.exe */
+SET ffmpeg=ffmpeg.exe
 
 REM /* start and end time of original video source */
 REM SET timeRange=-ss 00:00:00 -t 30
@@ -37,6 +38,7 @@ ECHO [INFO] TimeRange: %timeRange%
 ECHO [INFO] Filters  : %filters%
 ECHO [INFO] MaxColors: %maxColors%
 ECHO [INFO] Dither   : %dither%
+ECHO [PATH] PATH     : %PATH%
 ECHO [PATH] FFmpeg  file: %ffmpeg%
 ECHO [PATH] Input   file: %input%
 ECHO [PATH] Palette file: %palette%
@@ -50,11 +52,11 @@ IF "%input%"=="" (
 	EXIT 1
 )
 
-IF NOT EXIST "%ffmpeg%" (
-	ECHO [MSG] FFmpeg.exe not found in current folder.
+IF NOT EXIST %ffmpeg% (
+	ECHO [MSG] ffmpeg.exe not found in current folder.
 	CHOICE /C yn /M "[MSG] Would you like to download it now?"
 	IF ERRORLEVEL 2 ( 
-		NUL ) ^
+		ECHO. ) ^
 	ELSE IF ERRORLEVEL 1 (
 		START https://ffmpeg.zeranoe.com/builds/ )
 	PAUSE
@@ -65,8 +67,8 @@ REM /* end of validation */
 
 
 ECHO [STEP1] Generating palette file, please wait...
-CALL "%ffmpeg%" -v error %timeRange% -i "%input%" -vf "%filters%,palettegen=max_colors=%maxColors%" -y "%palette%"
-IF ERRORLEVEL 0 (
+CALL %ffmpeg% -v error %timeRange% -i "%input%" -vf "%filters%,palettegen=max_colors=%maxColors%" -y "%palette%"
+IF EXIST "%palette%" (
 	ECHO [STEP1] Palette file generated successfully. ) ^
 ELSE (
 	ECHO [STEP1] Failed to generate palette file.
@@ -76,8 +78,8 @@ ELSE (
 ECHO.
 
 ECHO [STEP2] Generating gif file, please wait...
-CALL "%ffmpeg%" -v error %timeRange% -i "%input%" -i "%palette%" -lavfi "%filters% [x]; [x][1:v] paletteuse=dither=%dither%" -y "%output%"
-IF ERRORLEVEL 0 (
+CALL %ffmpeg% -v error %timeRange% -i "%input%" -i "%palette%" -lavfi "%filters% [x]; [x][1:v] paletteuse=dither=%dither%" -y "%output%"
+IF EXIST "%output%" (
 	ECHO [STEP2] Gif file generated successfully. ) ^
 ELSE (
 	ECHO [STEP2] Failed to generate gif file.
