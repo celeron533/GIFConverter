@@ -1,6 +1,10 @@
 # GIFConverter
 A batch script for auto generating gif files by FFmpeg.exe on Windows
 
+Bash script from: http://blog.pkh.me/p/21-high-quality-gif-with-ffmpeg.html
+
+This repo is a ported version on Windows.
+
 ## Prerequisite
 * Microsoft Windows
 * FFmpeg (https://ffmpeg.org/download.html#build-windows)
