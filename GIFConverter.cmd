@@ -21,6 +21,9 @@ SET timeRange=-ss 0 -t 30
 REM /* set fps and scale */
 SET filters=fps=15,scale=320:-1:flags=lanczos
 
+REM /* maximum number of colors (<=256) to the palette */
+SET maxColors=256
+
 REM /* dither for the gif */
 REM SET dither=none        //Small file size. Normal quality.
 REM SET dither=sierra2     //Medium file size. Better quality.
@@ -31,6 +34,7 @@ SET dither=none
 REM /* information */
 ECHO [INFO] TimeRange: %timeRange%
 ECHO [INFO] Filters  : %filters%
+ECHO [INFO] MaxColors: %maxColors%
 ECHO [INFO] Dither   : %dither%
 ECHO [PATH] FFmpeg  file: %ffmpeg%
 ECHO [PATH] Input   file: %input%
@@ -60,7 +64,7 @@ REM /* end of validation */
 
 
 ECHO [STEP1] Generating palette file, please wait...
-CALL "%ffmpeg%" -v error %timeRange% -i "%input%" -vf "%filters%,palettegen" -y "%palette%"
+CALL "%ffmpeg%" -v error %timeRange% -i "%input%" -vf "%filters%,palettegen=max_colors=%maxColors%" -y "%palette%"
 IF ERRORLEVEL 0 (
 	ECHO [STEP1] Palette file generated successfully. ) ^
 ELSE (
