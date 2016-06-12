@@ -27,13 +27,11 @@ This repo is a ported version on Windows.
 * Gif dither: `none`
 
 ## Sample
-fps=15
 
-resolution: width=128px, height=auto
-
-dither: none
-
-size: 541KB
-
+* fps=15
+* resolution: width=128px, height=auto
+* dither: none
+* duration: 7.5s
+* size: 541KB
 
 ![Sample gif - Evangelion](sample_15fps_128px_none.gif)
