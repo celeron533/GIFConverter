@@ -25,3 +25,15 @@ This repo is a ported version on Windows.
 * Image scale/resize: `width=320, height=auto`
 * Max number of colors for Gif palette: `256`
 * Gif dither: `none`
+
+## Sample
+fps=15
+
+resolution: width=128px, height=auto
+
+dither: none
+
+size: 541KB
+
+
+![Sample gif - Evangelion](sample_15fps_128px_none.gif)
