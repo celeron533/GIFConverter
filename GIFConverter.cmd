@@ -28,7 +28,7 @@ SET maxColors=256
 REM /* dither for the gif */
 REM SET dither=none        //Small file size. Normal quality.
 REM SET dither=sierra2     //Medium file size. Better quality.
-REM SET dither=sierra2_4a  //Large file size. Bett quality.
+REM SET dither=sierra2_4a  //Large file size. Best quality.
 SET dither=none
 
 
