@@ -10,9 +10,9 @@ This repo is a ported version on Windows.
 * FFmpeg (https://ffmpeg.org/download.html#build-windows)
 
 ## How to Use
-1. Put the FFmpeg.exe and GIFConverter.cmd file in the same folder.
-2. Drag & drop you video file (avi, mp4, 3gp, etc.) onto the batch file.
-3. Wait for devlivering the GIF. The gif file is stored with video source in the same folder.
+1. Put the `FFmpeg.exe` and `GIFConverter.cmd` file in the same folder.
+2. Drag & drop you video file (FFmpeg supported, such as avi, mp4, 3gp, etc.) onto the batch file.
+3. Wait for generating the GIF. The gif output file will be created in the same folder as video source.
     * Input `C:\sample\video.mp4`
     * Output `C:\sample\video.gif`
 
